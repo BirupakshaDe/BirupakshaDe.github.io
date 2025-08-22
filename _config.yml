@@ -1,0 +1,17 @@
+title: "Your Name"
+description: "Astrophysics Student | IISER Kolkata"
+theme: minimal-mistakes-jekyll
+remote_theme: mmistakes/minimal-mistakes
+url: "https://yourusername.github.io"
+author:
+  name: "Your Name"
+  avatar: "/assets/images/profile.jpg"
+  bio: "BS-MS Student at IISER Kolkata | Astrophysics Enthusiast"
+  location: "Kolkata, India"
+  links:
+    - label: "CV"
+      url: "/assets/files/cv.pdf"
+    - label: "GitHub"
+      url: "https://github.com/yourusername"
+    - label: "LinkedIn"
+      url: "https://linkedin.com/in/yourprofile"
