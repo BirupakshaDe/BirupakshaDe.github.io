@@ -10,7 +10,7 @@
     body {
       font-family: 'Arial', sans-serif;
       color: white;
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      background: radial-gradient(ellipse at bottom, #203050 0%, #0a0f1f 100%);
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
@@ -20,14 +20,14 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
+      background: rgba(0,0,30,0.6);
+      backdrop-filter: blur(12px);
       padding: 15px;
       text-align: center;
       z-index: 1000;
     }
     nav a {
-      color: #80c8ff;
+      color: #7ecbff;
       margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
@@ -43,14 +43,14 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: transparent;
     }
     header img {
       width: 160px;
       height: 160px;
       border-radius: 50%;
-      border: 3px solid #80c8ff;
+      border: 3px solid #7ecbff;
       margin-bottom: 20px;
+      box-shadow: 0 0 30px rgba(126, 203, 255, 0.5);
     }
     header h1 {
       font-size: 3.5em;
@@ -64,8 +64,8 @@
     /* Glassy Sections */
     section {
       padding: 80px 20px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(15px);
       margin: 40px auto;
       width: 80%;
       border-radius: 15px;
@@ -74,7 +74,7 @@
       text-align: center;
       margin-bottom: 20px;
       font-size: 2em;
-      color: #80c8ff;
+      color: #7ecbff;
     }
     section p {
       text-align: center;
@@ -94,8 +94,8 @@
     .icons img {
       width: 35px;
       height: 35px;
-      filter: invert(80%) sepia(10%) saturate(500%) hue-rotate(180deg);
-      transition: transform 0.3s;
+      filter: invert(80%) sepia(10%) saturate(400%) hue-rotate(180deg);
+      transition: transform 0.3s, filter 0.3s;
     }
     .icons img:hover {
       transform: scale(1.2);
@@ -105,11 +105,11 @@
     footer {
       text-align: center;
       padding: 20px;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,20,0.7);
       margin-top: 20px;
     }
 
-    /* Stars + Shooting Stars */
+    /* Stars Background */
     #stars {
       position: fixed;
       top: 0; left: 0;
@@ -132,12 +132,14 @@
     }
     .shooting-star {
       position: absolute;
-      width: 150px; height: 2px;
+      width: 120px; height: 2px;
       background: linear-gradient(90deg, white, transparent);
-      animation: shoot 3s linear infinite;
+      opacity: 0.8;
+      transform: rotate(45deg);
+      animation: shoot 1.5s linear forwards;
     }
     @keyframes shoot {
-      from { transform: translateX(-200px) translateY(-200px) rotate(45deg); opacity: 1; }
+      from { transform: translateX(-150px) translateY(-150px) rotate(45deg); opacity: 1; }
       to { transform: translateX(100vw) translateY(100vh) rotate(45deg); opacity: 0; }
     }
   </style>
@@ -210,15 +212,15 @@
     stars.appendChild(star);
   }
 
-  // Shooting stars
+  // Shooting stars (rare, natural)
   setInterval(() => {
     let shootingStar = document.createElement("div");
     shootingStar.className = "shooting-star";
     shootingStar.style.top = Math.random() * window.innerHeight / 2 + "px";
     shootingStar.style.left = Math.random() * window.innerWidth / 2 + "px";
     stars.appendChild(shootingStar);
-    setTimeout(() => shootingStar.remove(), 3000);
-  }, 4000);
+    setTimeout(() => shootingStar.remove(), 2000);
+  }, 7000); // one every ~7 seconds
 </script>
 
 </body>
