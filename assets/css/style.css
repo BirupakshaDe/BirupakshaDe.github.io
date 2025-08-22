@@ -133,3 +133,14 @@ li { margin: .25rem 0; }
   color: #b7d6ff;
   opacity: 0.9;
 }
+/* Cinematic Section Appearance */
+section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
