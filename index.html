@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Name | Astrophysics</title>
   <style>
-    /* Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -16,7 +15,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Navbar */
     nav {
       position: fixed;
       top: 0;
@@ -36,11 +34,9 @@
     }
     nav a:hover { color: #ffffff; }
 
-    /* Header (Hero) */
     header {
       height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -107,34 +103,36 @@
       color: #001a33;
     }
 
-    /* Sections */
-    section {
-      padding: 80px 20px;
-      max-width: 900px;
+    /* White content section */
+    .content-section {
+      background: white;
+      color: #222;
+      padding: 100px 20px;
+      max-width: 1000px;
       margin: 0 auto;
     }
-    section h2 {
+    .content-section h2 {
       font-size: 2.2em;
       margin-bottom: 20px;
       text-align: center;
-      color: #80c8ff;
-      text-shadow: 0 0 10px rgba(128,200,255,0.6);
+      color: #002b55;
     }
-    section p {
+    .content-section p {
       line-height: 1.7;
       text-align: center;
       font-size: 1.1em;
+      max-width: 750px;
+      margin: 0 auto;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 25px;
       background: rgba(0,0,30,0.9);
-      margin-top: 40px;
+      margin-top: 0;
+      color: #80c8ff;
     }
 
-    /* Stars */
     #stars, #shooting-stars {
       position: fixed;
       top: 0; left: 0;
@@ -173,7 +171,6 @@
 <div id="stars"></div>
 <div id="shooting-stars"></div>
 
-<!-- Nav -->
 <nav>
   <a href="#home">Home</a>
   <a href="#about">About</a>
@@ -181,7 +178,6 @@
   <a href="#projects">Projects</a>
 </nav>
 
-<!-- Hero -->
 <header id="home">
   <div class="profile-card">
     <img src="profile.jpg" alt="Profile Photo" class="profile-pic">
@@ -201,28 +197,39 @@
   </div>
 </header>
 
-<!-- Sections -->
-<section id="about">
+<!-- White Section -->
+<div class="content-section" id="about">
   <h2>About Me</h2>
-  <p>Write a concise intro about yourself, astrophysics interests, and academic journey.</p>
-</section>
+  <p>
+    I am a 2nd-year BS-MS student at IISER Kolkata with interests in space sciences, astrophysics, 
+    and data-driven research. My current focus is on Gaia data analysis, exoplanet detection, 
+    and computational astrophysics.
+  </p>
+</div>
 
-<section id="research">
+<div class="content-section" id="research">
   <h2>Research</h2>
-  <p>Summarize your research projects (Gaia clustering, exoplanets, simulations, etc.).</p>
-</section>
+  <p>
+    Example: Classifying stars using Gaia DR3 and clustering algorithms.  
+    Exploring exoplanetary signals in RV datasets.  
+    Building Python simulations to demonstrate Kepler’s Laws.
+  </p>
+</div>
 
-<section id="projects">
+<div class="content-section" id="projects">
   <h2>Projects</h2>
-  <p>List key coding/astrophysics projects, preferably with GitHub links.</p>
-</section>
+  <p>
+    🚀 Kepler’s Second Law Simulation (Python)  
+    ⭐ Gaia Star Classification with ML  
+    ☀️ Space Weather Data Analysis  
+    🔭 Exoplanet Radial Velocity Assignment
+  </p>
+</div>
 
-<!-- Footer -->
 <footer>
   <p>© 2025 Your Name | Hosted on GitHub Pages</p>
 </footer>
 
-<!-- Stars Script -->
 <script>
   const stars = document.getElementById("stars");
   for (let i = 0; i < 120; i++) {
