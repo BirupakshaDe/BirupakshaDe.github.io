@@ -1,11 +1,113 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>My Astrophysics Website</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YOUR NAME — Astrophysics</title>
+  <meta name="description" content="YOUR NAME — Astrophysics & Data-Driven Astronomy" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Hello, Universe!</h1>
-  <p>This is my first astrophysics website hosted on GitHub Pages.</p>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="#">YOUR NAME</a>
+      <div class="links">
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <section class="hero">
+      <h1>Astrophysics • Data • Open Science</h1>
+      <p class="tagline">
+        BS–MS student at IISER Kolkata. Interests: data-driven astrophysics, space weather, computational astrophysics.
+      </p>
+      <div class="badges">
+        <a href="https://scholar.google.com/citations?user=YOURID" target="_blank">Google Scholar</a>
+        <a href="https://orcid.org/0000-0000-0000-0000" target="_blank">ORCID</a>
+        <a href="https://ui.adsabs.harvard.edu/" target="_blank">ADS</a>
+        <a href="https://github.com/YOURUSER" target="_blank">GitHub</a>
+      </div>
+    </section>
+  </header>
+
+  <main class="container">
+    <section id="research" class="section">
+      <h2>Research Interests</h2>
+      <ul class="bullets">
+        <li>Exoplanet detection & RV time-series analysis</li>
+        <li>Space weather & solar wind–magnetosphere coupling</li>
+        <li>Computational astrophysics & N-body/Keplerian dynamics</li>
+        <li>Astrostatistics, clustering (Gaia) & uncertainty quantification</li>
+      </ul>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Featured Projects</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Classifying Stars with Gaia + Clustering</h3>
+          <p>Pipeline for cleaning Gaia EDR3, building HR diagrams, and applying HDBSCAN to identify sequences.</p>
+          <p class="meta">Python • Astropy • Scikit-learn</p>
+          <p><a href="https://github.com/YOURUSER/gaia-clustering">Code</a> · <a href="https://yourusername.github.io/gaia-demo">Demo</a></p>
+        </article>
+        <article class="card">
+          <h3>Radial-Velocity Period Finder</h3>
+          <p>Lomb–Scargle periodograms with window-function checks and injection–recovery tests.</p>
+          <p class="meta">Python • Astropy.timeseries • NumPy</p>
+          <p><a href="https://github.com/YOURUSER/rv-periods">Code</a></p>
+        </article>
+        <article class="card">
+          <h3>Kepler’s Second Law Simulator</h3>
+          <p>Interactive JS plot showing equal areas in equal times.</p>
+          <p class="meta">JavaScript • Canvas</p>
+          <p><a href="projects/kepler.html">Live</a> · <a href="https://github.com/YOURUSER/kepler-sim">Code</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications" class="section">
+      <h2>Publications & Preprints</h2>
+      <ol class="pubs">
+        <li>
+          <strong>Lastname, Firstname</strong>, et al. (2025).
+          <em>Title of your paper.</em>
+          <a href="https://arxiv.org/abs/XXXX.XXXXX">arXiv</a> ·
+          <a href="https://ui.adsabs.harvard.edu/abs/XXXX/abstract">ADS</a> ·
+          <a href="papers/yourpaper.pdf">PDF</a> ·
+          <a href="https://github.com/YOURUSER/paper-code">Code</a>
+        </li>
+        <!-- Add more items as needed -->
+      </ol>
+    </section>
+
+    <section id="cv" class="section">
+      <h2>CV</h2>
+      <p>Download my current <a href="files/Your_Name_CV.pdf">CV (PDF)</a>.</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> you@institute.ac.in</p>
+      <p><strong>Address:</strong> Dept. of Physical Sciences, IISER Kolkata</p>
+      <p><strong>Profiles:</strong>
+        <a href="https://scholar.google.com/citations?user=YOURID">Scholar</a> ·
+        <a href="https://orcid.org/0000-0000-0000-0000">ORCID</a> ·
+        <a href="https://ui.adsabs.harvard.edu/">ADS</a> ·
+        <a href="https://github.com/YOURUSER">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/YOURID/">LinkedIn</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> YOUR NAME · Built with GitHub Pages</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
