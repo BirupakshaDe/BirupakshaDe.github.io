@@ -1,196 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Your Name</title>
-<meta name="description" content="Your Name — Astrophysics" />
-<style>
-  /* Base layout */
-  :root{
-    --text:#111;
-    --muted:#444;
-    --link:#0b5bd3;
-    --border:#e6e6e6;
-    --maxw: 820px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-    color:var(--text);
-    background:#fff;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name | Astrophysics</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-  /* Top bar (subtle) */
-  header.site-header{
-    position:sticky; top:0; z-index:10;
-    background:#fffcc000; /* fully white but allow future translucency */
-    border-bottom:1px solid var(--border);
-  }
-  .nav{
-    max-width:var(--maxw); margin:0 auto; padding:12px 20px;
-    display:flex; gap:14px; flex-wrap:wrap; align-items:center;
-    justify-content:flex-end;
-  }
-  .nav a{
-    color:var(--muted); text-decoration:none; font-size:0.95rem;
-  }
-  .nav a:hover{ color:var(--link); text-decoration:underline; }
+    /* Main container split */
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
 
-  /* Page container */
-  .container{ max-width:var(--maxw); margin:0 auto; padding:32px 20px 60px; }
+    /* Left panel with background image */
+    .left-panel {
+      width: 35%;
+      background: url("jkGGvqz-night-sky-wallpaper.jpg") no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      color: white;
+    }
 
-  /* Hero */
-  .hero{ margin:36px 0 28px; }
-  .hero h1{ font-size:2.2rem; line-height:1.2; margin:0 0 6px; }
-  .hero .tag{ color:var(--muted); margin:0 0 12px; }
-  .hero .contact{
-    display:flex; gap:12px; flex-wrap:wrap; margin:8px 0 0;
-    font-size:0.98rem;
-  }
-  .hero .contact a{ color:var(--link); text-decoration:none; }
-  .hero .contact a:hover{ text-decoration:underline; }
-  .hero .cv{
-    display:inline-block; padding:6px 10px; border:1px solid var(--border);
-    border-radius:6px; text-decoration:none; color:var(--text);
-  }
-  .hero .cv:hover{ border-color:#cfcfcf; }
+    /* Glass effect box */
+    .profile {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      max-width: 80%;
+    }
 
-  /* Section */
-  section{ padding:22px 0; border-top:1px solid var(--border); }
-  section h2{ font-size:1.35rem; margin:0 0 10px; }
-  section p{ margin:10px 0; }
-  ul.clean{ list-style:none; padding:0; margin:0; }
-  ul.clean li{ margin:10px 0; }
-  .meta{ color:var(--muted); font-size:0.95rem; }
+    /* Profile picture */
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid white;
+      margin-bottom: 15px;
+    }
 
-  /* Publication style */
-  .pub{ margin:14px 0; }
-  .pub .title{ font-weight:600; }
-  .pub .authors, .pub .venue{ color:var(--muted); }
-  .links a{ margin-right:10px; color:var(--link); text-decoration:none; }
-  .links a:hover{ text-decoration:underline; }
+    /* Name */
+    .profile h2 {
+      margin: 10px 0;
+      font-size: 24px;
+    }
 
-  /* Footer */
-  footer{ border-top:1px solid var(--border); margin-top:30px; }
-  footer .container{ padding:18px 20px; color:var(--muted); font-size:0.95rem; }
-</style>
+    /* Contact details */
+    .profile p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    /* Social icons */
+    .social-icons img {
+      width: 28px;
+      margin: 8px;
+      filter: brightness(0) invert(1); /* makes icons white */
+      transition: 0.3s;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    /* Right panel with white background */
+    .right-panel {
+      width: 65%;
+      background: white;
+      padding: 40px;
+      color: black;
+      overflow-y: auto;
+    }
+
+    .right-panel h1 {
+      font-size: 28px;
+      margin-top: 0;
+      color: #222;
+    }
+
+    .right-panel p {
+      line-height: 1.6;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
-
-<header class="site-header">
-  <nav class="nav">
-    <a href="#about">About</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#projects">Projects</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#cv">CV</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<main class="container">
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <h1>Your Name</h1>
-    <p class="tag">Astrophysics • Your Affiliation</p>
-    <div class="contact">
-      <a href="mailto:your.email@example.com">your.email@example.com</a> ·
-      <a href="https://github.com/yourusername" target="_blank">GitHub</a> ·
-      <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> ·
-      <a class="cv" href="CV.pdf" target="_blank">CV (PDF)</a>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about">
-    <h2>About</h2>
-    <p>
-      Short paragraph about your interests in astrophysics, current role, and focus areas.
-      Keep it concise—2–4 sentences.
-    </p>
-  </section>
-
-  <!-- Research -->
-  <section id="research">
-    <h2>Research</h2>
-    <ul class="clean">
-      <li>
-        <div class="title"><strong>Project A:</strong> Gaia DR3 clustering for stellar populations</div>
-        <div class="meta">2025 — Your Lab / Supervisor</div>
-        <p>One-sentence summary of your contribution and methods.</p>
-        <div class="links">
-          <a href="#" target="_blank">code</a><a href="#" target="_blank">poster</a>
+  <div class="container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <div class="profile">
+        <img src="your-profile.jpg" alt="Profile Picture" class="profile-pic">
+        <h2>Your Name</h2>
+        <p>Email: youremail@example.com</p>
+        <p>Location: Your City</p>
+        <div class="social-icons">
+          <a href="https://github.com/yourusername" target="_blank">
+            <img src="github-logo.png" alt="GitHub">
+          </a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank">
+            <img src="linkedin-logo.png" alt="LinkedIn">
+          </a>
+          <a href="your-cv.pdf" target="_blank">📄 CV</a>
         </div>
-      </li>
-      <li>
-        <div class="title"><strong>Project B:</strong> Exoplanet transit timing variations</div>
-        <div class="meta">2024 — Course/Independent</div>
-        <p>One-sentence summary of dataset and result.</p>
-        <div class="links">
-          <a href="#" target="_blank">report</a><a href="#" target="_blank">slides</a>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <!-- Publications -->
-  <section id="publications">
-    <h2>Publications</h2>
-    <div class="pub">
-      <div class="title">Paper Title (if any)</div>
-      <div class="authors">You, Co-author, Co-author</div>
-      <div class="venue">Journal / arXiv, 2025</div>
-      <div class="links">
-        <a href="#" target="_blank">arXiv</a>
-        <a href="#" target="_blank">pdf</a>
-        <a href="#" target="_blank">bibtex</a>
       </div>
     </div>
-    <!-- Add more .pub blocks as needed -->
-  </section>
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul class="clean">
-      <li><strong>Kepler Simulator</strong> — small Python app visualizing orbital areas. <a href="#" target="_blank">code</a></li>
-      <li><strong>Star Classifier</strong> — ML on Gaia features. <a href="#" target="_blank">code</a></li>
-    </ul>
-  </section>
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <h1>About Me</h1>
+      <p>
+        I am a BS-MS student at IISER Kolkata with a passion for space sciences and astrophysics. 
+        My research interests include data-driven astrophysics, computational astrophysics, 
+        and space weather.
+      </p>
 
-  <!-- Teaching -->
-  <section id="teaching">
-    <h2>Teaching</h2>
-    <ul class="clean">
-      <li>TA — Course Name, Term, brief description.</li>
-    </ul>
-  </section>
+      <h1>Research</h1>
+      <p>
+        Currently working on <b>Classifying Stars using Gaia Data and Clustering Algorithms</b>. 
+        I am also exploring applications of Kepler’s laws in Python simulations.
+      </p>
 
-  <!-- CV anchor -->
-  <section id="cv">
-    <h2>CV</h2>
-    <p>Download my full CV here: <a href="CV.pdf" target="_blank">CV.pdf</a></p>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email is best: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-    <p class="meta">Optionally list institution address or office hours.</p>
-  </section>
-</main>
-
-<footer>
-  <div class="container">
-    © 2025 Your Name
+      <h1>Projects</h1>
+      <p>
+        - Kepler’s Second Law Simulation in Python <br>
+        - Data-driven analysis of exoplanetary signals <br>
+        - Participation in ISRO’s Bharatiya Antariksh Hackathon 2025
+      </p>
+    </div>
   </div>
-</footer>
-
 </body>
 </html>
