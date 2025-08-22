@@ -2,161 +2,212 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Name – Welcome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name | Astrophysics</title>
   <style>
-    /* Reset and base styling */
+    /* General Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html {
-      height: 100%;
-      font-family: sans-serif;
-      color: #e0e0e0;
-    }
 
-    /* Starry sky background */
     body {
-      background: #01051d;
-      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      background: linear-gradient(to top, #000011, #001a33, #002b55, #001a33, #000011);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      height: 100%;
     }
 
-    .stars, .shooting-stars {
+    /* Navbar */
+    nav {
       position: fixed;
       top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      pointer-events: none;
+      background: rgba(0,0,0,0.7);
+      padding: 15px;
+      text-align: center;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+    }
+    nav a {
+      color: #80c8ff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #ffffff; }
+
+    /* Header Section */
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: transparent;
+    }
+    header h1 {
+      font-size: 3.5em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 20px rgba(128,200,255,0.8);
+    }
+    header p {
+      font-size: 1.5em;
+      max-width: 600px;
+      color: #cce6ff;
     }
 
-    /* tiny stars using radial gradients */
-    .stars::after {
-      content: '';
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background:
-        radial-gradient(white, rgba(255,255,255,0)) 2px 2px / 3px 3px,
-        radial-gradient(white, rgba(255,255,255,0)) 50px 80px / 2px 2px,
-        radial-gradient(white, rgba(255,255,255,0)) 120px 150px / 1.5px 1.5px;
-      background-repeat: repeat;
-      animation: move-stars 200s linear infinite;
-      opacity: 0.8;
+    /* Section Styling */
+    section {
+      padding: 80px 20px;
+      background: rgba(0,0,30,0.7);
+      margin: 40px auto;
+      width: 80%;
+      border-radius: 15px;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2em;
+      color: #80c8ff;
+      text-shadow: 0 0 10px rgba(128,200,255,0.6);
+    }
+    section p {
+      text-align: center;
+      line-height: 1.6;
+      font-size: 1.1em;
     }
 
-    @keyframes move-stars {
-      from { transform: translate(0, 0); }
-      to { transform: translate(-50%, -50%); }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,30,0.9);
+      margin-top: 20px;
     }
 
-    /* Shooting star animation */
-    .shooting-stars .star {
+    /* Starry Background Animation */
+    #stars, #shooting-stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .star {
       position: absolute;
       width: 2px;
       height: 2px;
       background: white;
-      box-shadow: 0 0 6px white;
       border-radius: 50%;
-      animation: shooting 1s ease-in-out infinite;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
     }
 
-    @keyframes shooting {
-      0% {
-        opacity: 0;
-        transform: translate3d(var(--startX), var(--startY), 0) scale(0.5);
-      }
-      30% {
+    /* Shooting Star */
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+      opacity: 0.8;
+      transform: rotate(45deg);
+      animation: shoot 1.5s ease-in-out forwards;
+    }
+    @keyframes shoot {
+      from {
+        transform: translate(0,0) rotate(45deg);
         opacity: 1;
       }
-      100% {
+      to {
+        transform: translate(-600px,600px) rotate(45deg);
         opacity: 0;
-        transform: translate3d(calc(var(--startX) + var(--dx)), calc(var(--startY) + var(--dy)), 0) scale(0);
       }
-    }
-
-    /* Header/navigation styling */
-    header {
-      position: relative;
-      padding: 20px;
-      text-align: center;
-      z-index: 2;
-    }
-
-    header h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.2em;
-    }
-
-    header nav a {
-      margin: 0 10px;
-      color: #e0e0e0;
-      text-decoration: none;
-      font-size: 1.1em;
-    }
-
-    /* Content section styling */
-    section#welcome {
-      position: relative;
-      z-index: 2;
-      min-height: 70%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    section#welcome h2 {
-      font-size: 2em;
     }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
-  <div class="shooting-stars"></div>
 
-  <header>
-    <h1>Your Name</h1>
-    <nav>
-      <a href="#">About</a>
-      <a href="#">Research</a>
-      <a href="#">Blog</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+<div id="stars"></div>
+<div id="shooting-stars"></div>
 
-  <section id="welcome">
-    <h2>Hello! I’m [Your Name]. Welcome to my site.</h2>
-  </section>
+<!-- Navigation -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#research">Research</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <script>
-    function createShootingStar() {
-      const star = document.createElement('div');
-      star.classList.add('star');
+<!-- Header -->
+<header id="home">
+  <h1>Your Name</h1>
+  <p>BS-MS Student at IISER Kolkata | Exploring the Universe through Data and Simulations</p>
+</header>
 
-      const startX = Math.random() * window.innerWidth;
-      const startY = Math.random() * window.innerHeight * 0.5;
-      const length = Math.random() * 300 + 300;
-      const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.2;
+<!-- About Section -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>Brief intro about you and your astrophysics interests.</p>
+</section>
 
-      const dx = Math.cos(angle) * length;
-      const dy = Math.sin(angle) * length;
+<!-- Research Section -->
+<section id="research">
+  <h2>Research</h2>
+  <p>Describe your research projects, e.g., Gaia data clustering, exoplanet analysis, etc.</p>
+</section>
 
-      star.style.setProperty('--startX', startX + 'px');
-      star.style.setProperty('--startY', startY + 'px');
-      star.style.setProperty('--dx', dx + 'px');
-      star.style.setProperty('--dy', dy + 'px');
+<!-- Projects Section -->
+<section id="projects">
+  <h2>Projects</h2>
+  <p>List key projects (with GitHub links if possible).</p>
+</section>
 
-      document.querySelector('.shooting-stars').appendChild(star);
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+  <p>
+    <a href="https://github.com/yourusername">GitHub</a> | 
+    <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
+  </p>
+</section>
 
-      star.addEventListener('animationend', () => star.remove());
-    }
+<footer>
+  <p>© 2025 Your Name | Built with GitHub Pages</p>
+</footer>
 
-    function randomShootingStar() {
-      createShootingStar();
-      const delay = Math.random() * 3000 + 2000; // every 2–5s
-      setTimeout(randomShootingStar, delay);
-    }
+<script>
+  // Generate twinkling stars
+  const stars = document.getElementById("stars");
+  for (let i = 0; i < 150; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * window.innerHeight + "px";
+    star.style.left = Math.random() * window.innerWidth + "px";
+    stars.appendChild(star);
+  }
 
-    // start after page loads
-    window.addEventListener('load', randomShootingStar);
-  </script>
+  // Generate random shooting stars
+  const shootingStars = document.getElementById("shooting-stars");
+  function createShootingStar() {
+    let star = document.createElement("div");
+    star.className = "shooting-star";
+    star.style.top = Math.random() * window.innerHeight/2 + "px";
+    star.style.left = Math.random() * window.innerWidth + "px";
+    shootingStars.appendChild(star);
+
+    setTimeout(() => { star.remove(); }, 1500);
+  }
+
+  // Launch shooting stars randomly
+  setInterval(createShootingStar, 4000);
+</script>
+
 </body>
 </html>
