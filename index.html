@@ -1,114 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Your Name | Astrophysics</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: #f5f5f5;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Your Name</title>
+<meta name="description" content="Your Name — Astrophysics" />
+<style>
+  /* Base layout */
+  :root{
+    --text:#111;
+    --muted:#444;
+    --link:#0b5bd3;
+    --border:#e6e6e6;
+    --maxw: 820px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+    color:var(--text);
+    background:#fff;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
 
-    header {
-      text-align: center;
-      padding: 120px 20px 60px;
-    }
-    header h1 {
-      font-size: 2.8em;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.2em;
-      color: #555;
-      max-width: 600px;
-      margin: 0 auto 20px;
-    }
-    .btn-cv {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 1em;
-      text-decoration: none;
-      border: 2px solid #333;
-      border-radius: 25px;
-      color: #333;
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn-cv:hover {
-      background: #333;
-      color: white;
-    }
-    .icons {
-      margin-top: 25px;
-    }
-    .icons a {
-      margin: 0 8px;
-      color: inherit;
-      text-decoration: none;
-      font-size: 1.5em;
-      transition: color 0.3s;
-    }
-    .icons a:hover {
-      color: #0073b1; /* LinkedIn blue as default hover color */
-    }
+  /* Top bar (subtle) */
+  header.site-header{
+    position:sticky; top:0; z-index:10;
+    background:#fffcc000; /* fully white but allow future translucency */
+    border-bottom:1px solid var(--border);
+  }
+  .nav{
+    max-width:var(--maxw); margin:0 auto; padding:12px 20px;
+    display:flex; gap:14px; flex-wrap:wrap; align-items:center;
+    justify-content:flex-end;
+  }
+  .nav a{
+    color:var(--muted); text-decoration:none; font-size:0.95rem;
+  }
+  .nav a:hover{ color:var(--link); text-decoration:underline; }
 
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    section h2 {
-      font-size: 2em;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
-      color: #444;
-    }
-    section p {
-      color: #555;
-    }
+  /* Page container */
+  .container{ max-width:var(--maxw); margin:0 auto; padding:32px 20px 60px; }
 
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 0.9em;
-      color: #888;
-    }
-  </style>
+  /* Hero */
+  .hero{ margin:36px 0 28px; }
+  .hero h1{ font-size:2.2rem; line-height:1.2; margin:0 0 6px; }
+  .hero .tag{ color:var(--muted); margin:0 0 12px; }
+  .hero .contact{
+    display:flex; gap:12px; flex-wrap:wrap; margin:8px 0 0;
+    font-size:0.98rem;
+  }
+  .hero .contact a{ color:var(--link); text-decoration:none; }
+  .hero .contact a:hover{ text-decoration:underline; }
+  .hero .cv{
+    display:inline-block; padding:6px 10px; border:1px solid var(--border);
+    border-radius:6px; text-decoration:none; color:var(--text);
+  }
+  .hero .cv:hover{ border-color:#cfcfcf; }
+
+  /* Section */
+  section{ padding:22px 0; border-top:1px solid var(--border); }
+  section h2{ font-size:1.35rem; margin:0 0 10px; }
+  section p{ margin:10px 0; }
+  ul.clean{ list-style:none; padding:0; margin:0; }
+  ul.clean li{ margin:10px 0; }
+  .meta{ color:var(--muted); font-size:0.95rem; }
+
+  /* Publication style */
+  .pub{ margin:14px 0; }
+  .pub .title{ font-weight:600; }
+  .pub .authors, .pub .venue{ color:var(--muted); }
+  .links a{ margin-right:10px; color:var(--link); text-decoration:none; }
+  .links a:hover{ text-decoration:underline; }
+
+  /* Footer */
+  footer{ border-top:1px solid var(--border); margin-top:30px; }
+  footer .container{ padding:18px 20px; color:var(--muted); font-size:0.95rem; }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Your Name</h1>
-    <p>BS–MS Student at IISER Kolkata | Exploring the Universe through Data and Simulations</p>
-    <a class="btn-cv" href="CV.pdf" target="_blank">View CV</a>
-    <div class="icons">
-      <a href="https://github.com/yourusername" title="GitHub" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/yourprofile" title="LinkedIn" target="_blank">LinkedIn</a>
-    </div>
-  </header>
+<header class="site-header">
+  <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#projects">Projects</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Briefly introduce yourself here—your background, institution, and passions in astrophysics. Keep it friendly yet professional.</p>
+<main class="container">
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <h1>Your Name</h1>
+    <p class="tag">Astrophysics • Your Affiliation</p>
+    <div class="contact">
+      <a href="mailto:your.email@example.com">your.email@example.com</a> ·
+      <a href="https://github.com/yourusername" target="_blank">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> ·
+      <a class="cv" href="CV.pdf" target="_blank">CV (PDF)</a>
+    </div>
   </section>
 
+  <!-- About -->
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      Short paragraph about your interests in astrophysics, current role, and focus areas.
+      Keep it concise—2–4 sentences.
+    </p>
+  </section>
+
+  <!-- Research -->
   <section id="research">
     <h2>Research</h2>
-    <p>Describe your research interests and projects here, like Gaia clustering, exoplanet analysis, or simulations.</p>
+    <ul class="clean">
+      <li>
+        <div class="title"><strong>Project A:</strong> Gaia DR3 clustering for stellar populations</div>
+        <div class="meta">2025 — Your Lab / Supervisor</div>
+        <p>One-sentence summary of your contribution and methods.</p>
+        <div class="links">
+          <a href="#" target="_blank">code</a><a href="#" target="_blank">poster</a>
+        </div>
+      </li>
+      <li>
+        <div class="title"><strong>Project B:</strong> Exoplanet transit timing variations</div>
+        <div class="meta">2024 — Course/Independent</div>
+        <p>One-sentence summary of dataset and result.</p>
+        <div class="links">
+          <a href="#" target="_blank">report</a><a href="#" target="_blank">slides</a>
+        </div>
+      </li>
+    </ul>
   </section>
 
+  <!-- Publications -->
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="pub">
+      <div class="title">Paper Title (if any)</div>
+      <div class="authors">You, Co-author, Co-author</div>
+      <div class="venue">Journal / arXiv, 2025</div>
+      <div class="links">
+        <a href="#" target="_blank">arXiv</a>
+        <a href="#" target="_blank">pdf</a>
+        <a href="#" target="_blank">bibtex</a>
+      </div>
+    </div>
+    <!-- Add more .pub blocks as needed -->
+  </section>
+
+  <!-- Projects -->
   <section id="projects">
     <h2>Projects</h2>
-    <p>Highlight your coding or astrophysics-related projects—link to GitHub where appropriate.</p>
+    <ul class="clean">
+      <li><strong>Kepler Simulator</strong> — small Python app visualizing orbital areas. <a href="#" target="_blank">code</a></li>
+      <li><strong>Star Classifier</strong> — ML on Gaia features. <a href="#" target="_blank">code</a></li>
+    </ul>
   </section>
 
-  <footer>
-    &copy; 2025 Your Name
-  </footer>
+  <!-- Teaching -->
+  <section id="teaching">
+    <h2>Teaching</h2>
+    <ul class="clean">
+      <li>TA — Course Name, Term, brief description.</li>
+    </ul>
+  </section>
+
+  <!-- CV anchor -->
+  <section id="cv">
+    <h2>CV</h2>
+    <p>Download my full CV here: <a href="CV.pdf" target="_blank">CV.pdf</a></p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email is best: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <p class="meta">Optionally list institution address or office hours.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © 2025 Your Name
+  </div>
+</footer>
 
 </body>
 </html>
