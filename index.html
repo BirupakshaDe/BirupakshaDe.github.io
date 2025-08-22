@@ -128,6 +128,56 @@
         opacity: 0;
       }
     }
+    /* Profile Card Glass Effect */
+.profile-card {
+  background: rgba(0, 0, 50, 0.4);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(128, 200, 255, 0.3);
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #80c8ff;
+  object-fit: cover;
+}
+
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 0 5px rgba(128,200,255,0.6));
+  transition: transform 0.3s;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+.cv-link {
+  color: #80c8ff;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.cv-link:hover {
+  color: #ffffff;
+}
+
   </style>
 </head>
 <body>
@@ -146,8 +196,21 @@
 
 <!-- Header -->
 <header id="home">
-  <h1>Your Name</h1>
-  <p>BS-MS Student at IISER Kolkata | Exploring the Universe through Data and Simulations</p>
+  <div class="profile-card">
+    <img src="profile.jpg" alt="Profile Photo" class="profile-pic">
+    <h1>Your Name</h1>
+    <p>BS-MS Student at IISER Kolkata | Exploring the Universe through Data and Simulations</p>
+    <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    <div class="social-links">
+      <a href="CV.pdf" target="_blank" class="cv-link">📄 CV</a>
+      <a href="https://github.com/yourusername" target="_blank">
+        <img src="github-logo.png" alt="GitHub" class="icon">
+      </a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">
+        <img src="linkedin-logo.png" alt="LinkedIn" class="icon">
+      </a>
+    </div>
+  </div>
 </header>
 
 <!-- About Section -->
@@ -166,16 +229,6 @@
 <section id="projects">
   <h2>Projects</h2>
   <p>List key projects (with GitHub links if possible).</p>
-</section>
-
-<!-- Contact Section -->
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-  <p>
-    <a href="https://github.com/yourusername">GitHub</a> | 
-    <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
-  </p>
 </section>
 
 <footer>
