@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Name | Astrophysics</title>
   <style>
+    /* General Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Arial', sans-serif;
       color: white;
-      background: radial-gradient(ellipse at bottom, #203050 0%, #0a0f1f 100%);
+      background: linear-gradient(to top, #000011, #001a33, #002b55, #001a33, #000011);
       overflow-x: hidden;
       scroll-behavior: smooth;
+      height: 100%;
     }
 
     /* Navbar */
@@ -20,14 +22,14 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(0,0,30,0.6);
-      backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.7);
       padding: 15px;
       text-align: center;
       z-index: 1000;
+      backdrop-filter: blur(6px);
     }
     nav a {
-      color: #7ecbff;
+      color: #80c8ff;
       margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
@@ -35,7 +37,7 @@
     }
     nav a:hover { color: #ffffff; }
 
-    /* Header */
+    /* Header Section */
     header {
       height: 100vh;
       display: flex;
@@ -43,29 +45,23 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-    }
-    header img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 3px solid #7ecbff;
-      margin-bottom: 20px;
-      box-shadow: 0 0 30px rgba(126, 203, 255, 0.5);
+      background: transparent;
     }
     header h1 {
       font-size: 3.5em;
       margin-bottom: 15px;
+      text-shadow: 0 0 20px rgba(128,200,255,0.8);
     }
     header p {
       font-size: 1.5em;
       max-width: 600px;
+      color: #cce6ff;
     }
 
-    /* Glassy Sections */
+    /* Section Styling */
     section {
       padding: 80px 20px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(15px);
+      background: rgba(0,0,30,0.7);
       margin: 40px auto;
       width: 80%;
       border-radius: 15px;
@@ -74,7 +70,8 @@
       text-align: center;
       margin-bottom: 20px;
       font-size: 2em;
-      color: #7ecbff;
+      color: #80c8ff;
+      text-shadow: 0 0 10px rgba(128,200,255,0.6);
     }
     section p {
       text-align: center;
@@ -82,45 +79,25 @@
       font-size: 1.1em;
     }
 
-    /* Contact Icons */
-    .icons {
-      text-align: center;
-      margin-top: 15px;
-    }
-    .icons a {
-      margin: 0 10px;
-      display: inline-block;
-    }
-    .icons img {
-      width: 35px;
-      height: 35px;
-      filter: invert(80%) sepia(10%) saturate(400%) hue-rotate(180deg);
-      transition: transform 0.3s, filter 0.3s;
-    }
-    .icons img:hover {
-      transform: scale(1.2);
-      filter: invert(100%);
-    }
-
     footer {
       text-align: center;
       padding: 20px;
-      background: rgba(0,0,20,0.7);
+      background: rgba(0,0,30,0.9);
       margin-top: 20px;
     }
 
-    /* Stars Background */
-    #stars {
+    /* Starry Background Animation */
+    #stars, #shooting-stars {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: -1;
-      background: transparent;
       overflow: hidden;
     }
     .star {
       position: absolute;
-      width: 2px; height: 2px;
+      width: 2px;
+      height: 2px;
       background: white;
       border-radius: 50%;
       opacity: 0.8;
@@ -130,23 +107,33 @@
       from { opacity: 0.2; }
       to { opacity: 1; }
     }
+
+    /* Shooting Star */
     .shooting-star {
       position: absolute;
-      width: 120px; height: 2px;
-      background: linear-gradient(90deg, white, transparent);
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(-45deg, white, rgba(255,255,255,0));
       opacity: 0.8;
       transform: rotate(45deg);
-      animation: shoot 1.5s linear forwards;
+      animation: shoot 1.5s ease-in-out forwards;
     }
     @keyframes shoot {
-      from { transform: translateX(-150px) translateY(-150px) rotate(45deg); opacity: 1; }
-      to { transform: translateX(100vw) translateY(100vh) rotate(45deg); opacity: 0; }
+      from {
+        transform: translate(0,0) rotate(45deg);
+        opacity: 1;
+      }
+      to {
+        transform: translate(-600px,600px) rotate(45deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
 
 <div id="stars"></div>
+<div id="shooting-stars"></div>
 
 <!-- Navigation -->
 <nav>
@@ -155,46 +142,40 @@
   <a href="#research">Research</a>
   <a href="#projects">Projects</a>
   <a href="#contact">Contact</a>
-  <a href="CV.pdf" target="_blank">Download CV</a>
 </nav>
 
 <!-- Header -->
 <header id="home">
-  <img src="profile.jpg" alt="Your Photo">
   <h1>Your Name</h1>
   <p>BS-MS Student at IISER Kolkata | Exploring the Universe through Data and Simulations</p>
 </header>
 
-<!-- About -->
+<!-- About Section -->
 <section id="about">
   <h2>About Me</h2>
   <p>Brief intro about you and your astrophysics interests.</p>
 </section>
 
-<!-- Research -->
+<!-- Research Section -->
 <section id="research">
   <h2>Research</h2>
   <p>Describe your research projects, e.g., Gaia data clustering, exoplanet analysis, etc.</p>
 </section>
 
-<!-- Projects -->
+<!-- Projects Section -->
 <section id="projects">
   <h2>Projects</h2>
   <p>List key projects (with GitHub links if possible).</p>
 </section>
 
-<!-- Contact -->
+<!-- Contact Section -->
 <section id="contact">
   <h2>Contact</h2>
   <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-  <div class="icons">
-    <a href="https://github.com/yourusername" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
-    </a>
-    <a href="https://linkedin.com/in/yourprofile" target="_blank">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
-    </a>
-  </div>
+  <p>
+    <a href="https://github.com/yourusername">GitHub</a> | 
+    <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
+  </p>
 </section>
 
 <footer>
@@ -202,7 +183,7 @@
 </footer>
 
 <script>
-  // Generate stars
+  // Generate twinkling stars
   const stars = document.getElementById("stars");
   for (let i = 0; i < 150; i++) {
     let star = document.createElement("div");
@@ -212,15 +193,20 @@
     stars.appendChild(star);
   }
 
-  // Shooting stars (rare, natural)
-  setInterval(() => {
-    let shootingStar = document.createElement("div");
-    shootingStar.className = "shooting-star";
-    shootingStar.style.top = Math.random() * window.innerHeight / 2 + "px";
-    shootingStar.style.left = Math.random() * window.innerWidth / 2 + "px";
-    stars.appendChild(shootingStar);
-    setTimeout(() => shootingStar.remove(), 2000);
-  }, 7000); // one every ~7 seconds
+  // Generate random shooting stars
+  const shootingStars = document.getElementById("shooting-stars");
+  function createShootingStar() {
+    let star = document.createElement("div");
+    star.className = "shooting-star";
+    star.style.top = Math.random() * window.innerHeight/2 + "px";
+    star.style.left = Math.random() * window.innerWidth + "px";
+    shootingStars.appendChild(star);
+
+    setTimeout(() => { star.remove(); }, 1500);
+  }
+
+  // Launch shooting stars randomly
+  setInterval(createShootingStar, 4000);
 </script>
 
 </body>
