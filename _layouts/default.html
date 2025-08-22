@@ -1,44 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | Birupaksha De</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <!-- Starry background layers -->
-  <div id="stars"></div>
-  <div id="shooting-stars"></div>
 
-  <!-- Navbar -->
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <a class="brand" href="{{ '/' | relative_url }}">BD</a>
-      <div class="links">
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <a href="{{ '/about' | relative_url }}">About</a>
-        <a href="{{ '/research' | relative_url }}">Research</a>
-        <a href="{{ '/projects' | relative_url }}">Projects</a>
-        <a href="{{ '/contact' | relative_url }}">Contact</a>
-      </div>
+  <div class="container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="Birupaksha De" class="profile-pic">
+      <h1>Birupaksha De</h1>
+      <p>BS-MS Student | Space Sciences & Astrophysics</p>
     </div>
-  </nav>
 
-  <!-- Main content -->
-  <main class="container">
-    {{ content }}
-  </main>
-
-  <footer class="site-footer">
-    © {{ site.time | date: '%Y' }} {{ site.title }} · Built with Jekyll & GitHub Pages
-  </footer>
-
-  <script src="{{ '/assets/js/stars.js' | relative_url }}"></script>
-  
-  <script src="stars.js"></script>
-  <script src="script.js"></script>
+    <!-- Right Panel -->
+    <div class="right-panel">
+      {{ content }} <!-- This is where your page content will appear -->
+    </div>
+  </div>
 
 </body>
 </html>
