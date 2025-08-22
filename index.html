@@ -1,256 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Your Name | Astrophysics</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      font-family: "Inter", sans-serif;
-      color: white;
-      background: linear-gradient(to top, #000011, #001a33, #002b55, #001a33, #000011);
-      overflow-x: hidden;
-      scroll-behavior: smooth;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
     }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,20,0.5);
-      backdrop-filter: blur(6px);
-      padding: 12px;
-      text-align: center;
-      z-index: 1000;
-    }
-    nav a {
-      color: #80c8ff;
-      margin: 0 18px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav a:hover { color: #ffffff; }
 
     header {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       text-align: center;
-      padding: 0 20px;
+      padding: 120px 20px 60px;
     }
-
-    .profile-card {
-      background: rgba(0, 0, 50, 0.45);
-      backdrop-filter: blur(14px);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(128, 200, 255, 0.3);
-      max-width: 600px;
-    }
-
-    .profile-pic {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 3px solid #80c8ff;
-      object-fit: cover;
-      margin-bottom: 18px;
-    }
-
     header h1 {
-      font-size: 3em;
+      font-size: 2.8em;
       margin-bottom: 10px;
-      text-shadow: 0 0 20px rgba(128,200,255,0.8);
     }
     header p {
-      font-size: 1.3em;
-      color: #cce6ff;
-      margin-bottom: 12px;
+      font-size: 1.2em;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 20px;
     }
-
-    .social-links {
-      margin-top: 18px;
-    }
-    .social-links a {
-      margin: 0 12px;
+    .btn-cv {
       display: inline-block;
-    }
-    .icon {
-      width: 28px;
-      height: 28px;
-      filter: drop-shadow(0 0 5px rgba(128,200,255,0.6));
-      transition: transform 0.3s;
-    }
-    .icon:hover { transform: scale(1.2); }
-
-    .cv-link {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 8px 16px;
-      border: 1px solid #80c8ff;
-      border-radius: 8px;
-      color: #80c8ff;
-      font-weight: bold;
+      padding: 10px 20px;
+      font-size: 1em;
       text-decoration: none;
-      transition: all 0.3s;
+      border: 2px solid #333;
+      border-radius: 25px;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
     }
-    .cv-link:hover {
-      background: #80c8ff;
-      color: #001a33;
+    .btn-cv:hover {
+      background: #333;
+      color: white;
+    }
+    .icons {
+      margin-top: 25px;
+    }
+    .icons a {
+      margin: 0 8px;
+      color: inherit;
+      text-decoration: none;
+      font-size: 1.5em;
+      transition: color 0.3s;
+    }
+    .icons a:hover {
+      color: #0073b1; /* LinkedIn blue as default hover color */
     }
 
-    /* White content section */
-    .content-section {
-      background: white;
-      color: #222;
-      padding: 100px 20px;
-      max-width: 1000px;
-      margin: 0 auto;
+    section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-    .content-section h2 {
-      font-size: 2.2em;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #002b55;
+    section h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+      color: #444;
     }
-    .content-section p {
-      line-height: 1.7;
-      text-align: center;
-      font-size: 1.1em;
-      max-width: 750px;
-      margin: 0 auto;
+    section p {
+      color: #555;
     }
 
     footer {
       text-align: center;
-      padding: 25px;
-      background: rgba(0,0,30,0.9);
-      margin-top: 0;
-      color: #80c8ff;
-    }
-
-    #stars, #shooting-stars {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-    }
-    .star {
-      position: absolute;
-      width: 2px; height: 2px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: twinkle 2s infinite alternate;
-    }
-    @keyframes twinkle {
-      from { opacity: 0.2; }
-      to { opacity: 1; }
-    }
-    .shooting-star {
-      position: absolute;
-      width: 2px;
-      height: 80px;
-      background: linear-gradient(-45deg, white, rgba(255,255,255,0));
-      opacity: 0.8;
-      transform: rotate(45deg);
-      animation: shoot 1.5s ease-in-out forwards;
-    }
-    @keyframes shoot {
-      from { transform: translate(0,0) rotate(45deg); opacity: 1; }
-      to { transform: translate(-600px,600px) rotate(45deg); opacity: 0; }
+      padding: 40px 20px;
+      font-size: 0.9em;
+      color: #888;
     }
   </style>
 </head>
 <body>
 
-<div id="stars"></div>
-<div id="shooting-stars"></div>
-
-<nav>
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#research">Research</a>
-  <a href="#projects">Projects</a>
-</nav>
-
-<header id="home">
-  <div class="profile-card">
-    <img src="profile.jpg" alt="Profile Photo" class="profile-pic">
+  <header>
     <h1>Your Name</h1>
-    <p>BS-MS Student at IISER Kolkata</p>
-    <p>Exploring the Universe through Data and Simulations</p>
-    <p>Email: <a href="mailto:your.email@example.com" style="color:#80c8ff;">your.email@example.com</a></p>
-    <a href="CV.pdf" target="_blank" class="cv-link">📄 View CV</a>
-    <div class="social-links">
-      <a href="https://github.com/yourusername" target="_blank">
-        <img src="github-logo.png" alt="GitHub" class="icon">
-      </a>
-      <a href="https://linkedin.com/in/yourprofile" target="_blank">
-        <img src="linkedin-logo.png" alt="LinkedIn" class="icon">
-      </a>
+    <p>BS–MS Student at IISER Kolkata | Exploring the Universe through Data and Simulations</p>
+    <a class="btn-cv" href="CV.pdf" target="_blank">View CV</a>
+    <div class="icons">
+      <a href="https://github.com/yourusername" title="GitHub" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/yourprofile" title="LinkedIn" target="_blank">LinkedIn</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- White Section -->
-<div class="content-section" id="about">
-  <h2>About Me</h2>
-  <p>
-    I am a 2nd-year BS-MS student at IISER Kolkata with interests in space sciences, astrophysics, 
-    and data-driven research. My current focus is on Gaia data analysis, exoplanet detection, 
-    and computational astrophysics.
-  </p>
-</div>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Briefly introduce yourself here—your background, institution, and passions in astrophysics. Keep it friendly yet professional.</p>
+  </section>
 
-<div class="content-section" id="research">
-  <h2>Research</h2>
-  <p>
-    Example: Classifying stars using Gaia DR3 and clustering algorithms.  
-    Exploring exoplanetary signals in RV datasets.  
-    Building Python simulations to demonstrate Kepler’s Laws.
-  </p>
-</div>
+  <section id="research">
+    <h2>Research</h2>
+    <p>Describe your research interests and projects here, like Gaia clustering, exoplanet analysis, or simulations.</p>
+  </section>
 
-<div class="content-section" id="projects">
-  <h2>Projects</h2>
-  <p>
-    🚀 Kepler’s Second Law Simulation (Python)  
-    ⭐ Gaia Star Classification with ML  
-    ☀️ Space Weather Data Analysis  
-    🔭 Exoplanet Radial Velocity Assignment
-  </p>
-</div>
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Highlight your coding or astrophysics-related projects—link to GitHub where appropriate.</p>
+  </section>
 
-<footer>
-  <p>© 2025 Your Name | Hosted on GitHub Pages</p>
-</footer>
-
-<script>
-  const stars = document.getElementById("stars");
-  for (let i = 0; i < 120; i++) {
-    let star = document.createElement("div");
-    star.className = "star";
-    star.style.top = Math.random() * window.innerHeight + "px";
-    star.style.left = Math.random() * window.innerWidth + "px";
-    stars.appendChild(star);
-  }
-
-  const shootingStars = document.getElementById("shooting-stars");
-  function createShootingStar() {
-    let star = document.createElement("div");
-    star.className = "shooting-star";
-    star.style.top = Math.random() * window.innerHeight/2 + "px";
-    star.style.left = Math.random() * window.innerWidth + "px";
-    shootingStars.appendChild(star);
-    setTimeout(() => { star.remove(); }, 1500);
-  }
-  setInterval(createShootingStar, 4000);
-</script>
+  <footer>
+    &copy; 2025 Your Name
+  </footer>
 
 </body>
 </html>
