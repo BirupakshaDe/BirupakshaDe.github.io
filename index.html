@@ -1,6 +1,127 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birupaksha De</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* General */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
 
-{% include_relative index.md %}
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0px 0px 15px rgba(255,255,255,0.2);
+    }
+    header h1 {
+      margin: 1rem 0 0.5rem;
+      font-size: 2.8rem;
+      font-weight: 800;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #dcdcdc;
+    }
+
+    /* Links */
+    .links {
+      margin-top: 1rem;
+    }
+    .links a {
+      margin: 0 10px;
+      color: #f5f5f5;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+    .links a:hover {
+      color: #1abc9c;
+    }
+
+    /* Section */
+    section {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(8px);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.4);
+    }
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="profile.jpg" alt="Birupaksha De">
+      <h1>Birupaksha De</h1>
+      <p>BS-MS Student | Aspiring Astrophysicist | Data-driven Space Sciences</p>
+      <div class="links">
+        <a href="CV.pdf" target="_blank">📄 CV</a>
+        <a href="https://github.com/BirupakshaDe" target="_blank">🐙 GitHub</a>
+        <a href="https://linkedin.com/in/your-link" target="_blank">🔗 LinkedIn</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>About Me</h2>
+      <p>
+        I am a BS-MS student at IISER Kolkata with a passion for astrophysics, 
+        particularly in data-driven research, computational astrophysics, and space weather.
+        I have worked on projects involving Gaia data, clustering algorithms, and orbital simulations.
+      </p>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>Classifying Stars using Gaia Data:</strong> Applied clustering algorithms to stellar data.</li>
+        <li><strong>Kepler’s Second Law Simulation:</strong> Built Python-based orbital mechanics simulations.</li>
+        <li><strong>ISRO Hackathon 2025:</strong> Participated in Bharatiya Antariksh Hackathon.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+    </section>
+
+    <footer>
+      © 2025 Birupaksha De. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>
