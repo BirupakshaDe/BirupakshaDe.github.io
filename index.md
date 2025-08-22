@@ -3,27 +3,23 @@ layout: default
 title: Home
 ---
 
-<div class="card hero">
-  <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="Profile photo" class="profile">
-  <div>
-    <h1>Birupaksha De</h1>
-    <p>BS–MS Student · Astrophysics · IISER Kolkata</p>
-    <div class="meta">
-      <a class="badge" href="{{ '/files/CV.pdf' | relative_url }}" target="_blank">📄 CV</a>
-      <a class="badge" href="https://github.com/BirupakshaDe" target="_blank">GitHub</a>
-      <a class="badge" href="https://linkedin.com/in/your-profile" target="_blank">LinkedIn</a>
-      <a class="badge" href="mailto:your.email@example.com">Email</a>
-    </div>
-  </div>
-</div>
+## About Me
 
-<div style="height: 24px;"></div>
+I am a BS-MS student at IISER Kolkata with a deep passion for space sciences, astrophysics, and computational research. I love exploring the universe through data-driven projects and simulations.
 
-<div class="card">
-  <h2>Welcome</h2>
-  <p>
-    I explore the universe with code — from Gaia catalog mining to
-    orbital dynamics and exoplanet statistics. This site hosts my research
-    notes, projects, and contact info.
-  </p>
-</div>
+## Projects
+
+- **Classifying Stars using Gaia Data** - Mini research project using clustering algorithms.
+- **Kepler’s Second Law Simulation** - Python simulation of planetary motion.
+- **Space Weather Analysis** - Using satellite data to understand solar activity.
+
+## Skills
+
+- Python, C++
+- Astropy, Matplotlib, Pandas, NumPy
+- Data analysis & visualization
+- Scientific simulations
+
+## Contact
+
+[GitHub](https://github.com/BirupakshaDe) | [LinkedIn](https://www.linkedin.com/in/birupakshade)
