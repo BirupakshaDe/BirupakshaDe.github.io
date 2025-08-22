@@ -1,31 +1,33 @@
-// Ensure canvases exist (they are <div>s here)
-const starsLayer = document.getElementById('stars');
-const shootingLayer = document.getElementById('shooting-stars');
+const canvas = document.createElement('canvas');
+document.body.appendChild(canvas);
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-// Create 150 twinkling stars as small divs
-function makeStars(count = 150) {
-  // clear existing (in case of soft nav)
-  starsLayer.innerHTML = '';
-  const { innerWidth: W, innerHeight: H } = window;
-  for (let i = 0; i < count; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    s.style.top  = Math.random() * H + 'px';
-    s.style.left = Math.random() * W + 'px';
-    s.style.animationDelay = (Math.random() * 2).toFixed(2) + 's';
-    starsLayer.appendChild(s);
-  }
+let stars = [];
+for(let i=0;i<100;i++){
+    stars.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        size: Math.random()*2,
+        speed: Math.random()*0.5 + 0.2
+    });
 }
 
-function makeShootingStar() {
-  const s = document.createElement('div');
-  s.className = 'shooting-star';
-  s.style.top  = Math.random() * (window.innerHeight / 2) + 'px';
-  s.style.left = Math.random() * window.innerWidth + 'px';
-  shootingLayer.appendChild(s);
-  setTimeout(() => s.remove(), 1600);
+function animate(){
+    ctx.fillStyle = "#0d1b2a";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#fff";
+    stars.forEach(star=>{
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI*2);
+        ctx.fill();
+        star.y += star.speed;
+        if(star.y > canvas.height){
+            star.y = 0;
+            star.x = Math.random()*canvas.width;
+        }
+    });
+    requestAnimationFrame(animate);
 }
-
-makeStars(180);
-setInterval(makeShootingStar, 3500);
-window.addEventListener('resize', () => makeStars(180));
+animate();
