@@ -1,7 +1,0 @@
-title: "Birupaksha De | Astrophysics"
-description: "BS-MS Student at IISER Kolkata | Exploring the Universe"
-url: "https://birupakshade.github.io"   # all lowercase in URLs
-baseurl: ""                              # keep empty for user sites
-markdown: kramdown
-theme: null                               # we are using our own layout/CSS
-plugins: []                               
