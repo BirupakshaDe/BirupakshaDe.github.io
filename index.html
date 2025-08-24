@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Birupaksha De — Space Portfolio</title>
+  <meta name="description" content="Personal site with a starry space background, top navigation, and profile hero." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent: #79a8ff;
+      --accent-2: #8ef1ff;
+      --glass: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #eaf3ff;
+      --muted: #a9b7d0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: #030617;
+      overflow-x: hidden;
+    }
+
+    /* --- STARFIELD CANVAS BACKGROUND --- */
+    #bg {
+      position: fixed; inset: 0; z-index: -2;
+      background: radial-gradient(1200px 800px at 70% 20%, rgba(14,35,92,0.65), transparent 60%),
+                  radial-gradient(800px 600px at 20% 60%, rgba(3, 88, 109, 0.35), transparent 60%),
+                  radial-gradient(1000px 1000px at 50% 50%, rgba(139, 94, 214, 0.18), rgba(0,0,0,0) 60%);
+      filter: saturate(120%);
+    }
+    #stars {
+      position: fixed; inset: 0; z-index: -1; display:block; width: 100vw; height: 100vh;
+    }
+    /* soft vignette */
+    #vignette {
+      position: fixed; inset: -20vmin; pointer-events: none; z-index: -1;
+      background: radial-gradient(60vmin 60vmin at 50% 35%, rgba(0,0,0,0), rgba(0,0,0,0.45) 70%);
+    }
+
+    /* --- TOP NAVIGATION --- */
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(10px) saturate(120%);
+      background: linear-gradient(180deg, rgba(4,7,22,0.75), rgba(4,7,22,0.35));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 12px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand { display:flex; align-items:center; gap: 10px; text-decoration: none; color: var(--text); }
+    .brand .logo {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: radial-gradient(circle at 35% 35%, var(--accent), #4b86ff 40%, #1a2b6a 70%);
+      box-shadow: inset 0 0 12px rgba(255,255,255,0.35), 0 6px 18px rgba(30,78,255,0.25);
+    }
+    .brand span { font-weight: 700; letter-spacing: .2px; }
+
+    .tabs { display:flex; gap: 6px; flex-wrap: wrap; }
+    .tab-btn {
+      border: 1px solid var(--border); background: var(--glass); color: var(--text);
+      padding: 8px 12px; border-radius: 999px; cursor: pointer; font-size: 14px;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .tab-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.12); }
+    .tab-btn.active {
+      border-color: rgba(124, 189, 255, 0.75);
+      box-shadow: 0 0 0 3px rgba(120, 168, 255, 0.15), inset 0 0 14px rgba(124,189,255,0.08);
+    }
+
+    /* --- HERO --- */
+    .hero {
+      min-height: calc(100dvh - 68px);
+      display: grid; place-items: center; padding: 60px 20px 80px;
+    }
+    .card {
+      width: min(960px, 92vw);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px; box-shadow: var(--shadow);
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: center;
+    }
+    .avatar {
+      width: 180px; height: 180px; border-radius: 24px; overflow: hidden; position: relative;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+      background: rgba(255,255,255,0.02);
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display:block; }
+    .glow-ring {
+      position: absolute; inset: -6px; border-radius: 28px; pointer-events: none;
+      background: conic-gradient(from 0deg, rgba(121,168,255,0.3), rgba(142,241,255,0.2), rgba(121,168,255,0.3));
+      filter: blur(6px); opacity: .5; animation: spin 10s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg);} }
+
+    h1 { margin: 0 0 6px; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; font-weight: 800; }
+    .tagline { margin: 0 0 14px; color: var(--muted); font-size: 16px; }
+    .cta { display:flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .btn {
+      text-decoration: none; color: var(--text); border: 1px solid var(--border);
+      padding: 10px 14px; border-radius: 999px; background: var(--glass); font-weight: 600;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.12); }
+
+    /* --- SLIDE-DOWN PANELS (sections open from the TOP) --- */
+    .panel-wrap { position: relative; max-width: 1100px; margin: 24px auto 0; padding: 0 20px; }
+    .panel {
+      display: none; overflow: hidden; border-radius: var(--radius);
+      border: 1px solid var(--border); background: rgba(8,12,30,0.75);
+      backdrop-filter: blur(8px) saturate(120%);
+      box-shadow: var(--shadow);
+      animation: drop .35s ease both;
+    }
+    @keyframes drop { from { transform: translateY(-8px); opacity: 0;} to { transform: translateY(0); opacity: 1;} }
+    .panel.open { display: block; }
+    .panel .content { padding: 22px 22px 26px; }
+    .panel h2 { margin: 0 0 10px; font-size: 22px; }
+    .panel p { color: var(--muted); line-height: 1.7; }
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .tile { border: 1px solid var(--border); border-radius: 14px; padding: 14px; background: rgba(255,255,255,0.04); }
+    .tile h3 { margin: 2px 0 6px; font-size: 16px; }
+
+    /* --- FOOTER --- */
+    footer { text-align:center; color: var(--muted); font-size: 13px; padding: 38px 16px; }
+    footer a { color: var(--accent-2); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <!-- Background layers -->
+  <div id="bg"></div>
+  <canvas id="stars"></canvas>
+  <div id="vignette"></div>
+
+  <!-- Top Navigation (sections live here) -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#" aria-label="Homepage">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Birupaksha De</span>
+      </a>
+      <div class="tabs" role="tablist" aria-label="Sections">
+        <button class="tab-btn active" data-panel="about" role="tab" aria-controls="about-panel" aria-selected="true">About</button>
+        <button class="tab-btn" data-panel="projects" role="tab" aria-controls="projects-panel" aria-selected="false">Projects</button>
+        <button class="tab-btn" data-panel="publications" role="tab" aria-controls="publications-panel" aria-selected="false">Publications</button>
+        <button class="tab-btn" data-panel="contact" role="tab" aria-controls="contact-panel" aria-selected="false">Contact</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Slide-down panels rendered just under the top nav -->
+  <div class="panel-wrap">
+    <section id="about-panel" class="panel open" aria-labelledby="about" role="tabpanel">
+      <div class="content">
+        <h2>About</h2>
+        <p>
+          I am a BS–MS student at IISER Kolkata exploring astrophysics and data-driven space science. I enjoy building simulations, visualizations, and well-designed tools for understanding our universe.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects-panel" class="panel" aria-labelledby="projects" role="tabpanel">
+      <div class="content">
+        <h2>Projects</h2>
+        <div class="grid">
+          <div class="tile">
+            <h3>Kepler's Second Law Visualizer</h3>
+            <p>An interactive JS demo showing equal areas in equal times for orbital motion.</p>
+          </div>
+          <div class="tile">
+            <h3>Gaia Star Clustering</h3>
+            <p>Unsupervised clustering on Gaia DR3 to identify stellar populations.</p>
+          </div>
+          <div class="tile">
+            <h3>Solar Wind Dashboard</h3>
+            <p>Real-time plots of ACE/DSCOVR data to study space weather trends.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications-panel" class="panel" aria-labelledby="publications" role="tabpanel">
+      <div class="content">
+        <h2>Publications</h2>
+        <ul>
+          <li>Author, <em>Title of your paper</em>, Journal/Conference, Year.</li>
+          <li>Co-author, <em>Another title</em>, Venue, Year.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact-panel" class="panel" aria-labelledby="contact" role="tabpanel">
+      <div class="content">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:you@example.com">you@example.com</a> · GitHub: <a href="https://github.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a> · LinkedIn: <a href="#" target="_blank" rel="noopener">your-link</a></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- HERO with profile + name, kept separate from sections (which stay at the top) -->
+  <main class="hero">
+    <div class="card">
+      <div class="hero-inner">
+        <div class="avatar" aria-hidden="true">
+          <span class="glow-ring"></span>
+          <!-- Replace profile.jpg with your actual image path -->
+          <img src="profile.jpg" alt="Your profile photo" />
+        </div>
+        <div>
+          <h1>Birupaksha De</h1>
+          <p class="tagline">Astrophysics · Data · Visualization</p>
+          <div class="cta">
+            <a class="btn" href="#" data-panel-open="projects">See Projects</a>
+            <a class="btn" href="#" data-panel-open="contact">Get in touch</a>
+            <a class="btn" href="https://github.com/BirupakshaDe" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Birupaksha De · Built with HTML/CSS/JS · Space background by a custom canvas starfield
+  </footer>
+
+  <script>
+    // ===== Year =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Tabs -> Panels logic (sections live at the TOP) =====
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const panels = {
+      about: document.getElementById('about-panel'),
+      projects: document.getElementById('projects-panel'),
+      publications: document.getElementById('publications-panel'),
+      contact: document.getElementById('contact-panel'),
+    };
+
+    function openPanel(key){
+      Object.values(panels).forEach(p => p.classList.remove('open'));
+      Object.keys(panels).forEach(k => {
+        const btn = document.querySelector(`.tab-btn[data-panel="${k}"]`);
+        if(btn) btn.classList.remove('active');
+      });
+      const panel = panels[key];
+      const btn = document.querySelector(`.tab-btn[data-panel="${key}"]`);
+      if(panel) panel.classList.add('open');
+      if(btn) btn.classList.add('active');
+      // Smoothly scroll page to keep the panels at the top under the nav
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabButtons.forEach(btn => btn.addEventListener('click', () => openPanel(btn.dataset.panel)));
+    document.querySelectorAll('[data-panel-open]').forEach(link => link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openPanel(link.dataset.panelOpen);
+    }));
+
+    // ===== Canvas Starfield with twinkle + shooting stars =====
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let w, h, dpr;
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.width = Math.floor(innerWidth * dpr);
+      h = canvas.height = Math.floor(innerHeight * dpr);
+      canvas.style.width = innerWidth + 'px';
+      canvas.style.height = innerHeight + 'px';
+      initStars();
+    }
+    window.addEventListener('resize', resize);
+
+    // Star objects
+    const STAR_COUNT = 300; // total static stars
+    const stars = [];
+    const comets = [];
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    function initStars(){
+      stars.length = 0;
+      for(let i=0; i<STAR_COUNT; i++){
+        stars.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: rand(0.5, 1.8) * dpr,
+          a: rand(0.2, 0.9),
+          tw: rand(0.001, 0.004),
+          twPhase: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function addComet(){
+      const fromTop = Math.random() < 0.6; // 60% start near top-right
+      const startX = fromTop ? rand(w*0.55, w*0.95) : rand(w*0.65, w*0.95);
+      const startY = fromTop ? rand(0, h*0.35) : rand(h*0.1, h*0.55);
+      const speed = rand(8, 16) * dpr; // px/frame
+      const angle = (-45 + rand(-6, 6)) * Math.PI/180; // ~-45°
+      comets.push({ x: startX, y: startY, vx: -Math.cos(angle)*speed, vy: Math.sin(angle)*speed, life: 0, maxLife: rand(40, 80) });
+    }
+
+    let lastCometTime = 0;
+    function loop(t){
+      requestAnimationFrame(loop);
+      // clear
+      ctx.clearRect(0,0,w,h);
+
+      // stars
+      for(const s of stars){
+        s.twPhase += s.tw;
+        const alpha = s.a * (0.7 + 0.3 * Math.sin(s.twPhase));
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+      }
+
+      // comets (shooting stars)
+      if(t - lastCometTime > 2000 + Math.random()*3000){
+        addComet();
+        lastCometTime = t;
+      }
+      for(let i=comets.length-1; i>=0; i--){
+        const c = comets[i];
+        c.x += c.vx; c.y += c.vy; c.life++;
+        // trail
+        const trail = 80; // px length (scaled by dpr already via speed)
+        const grad = ctx.createLinearGradient(c.x, c.y, c.x - c.vx*4, c.y - c.vy*4);
+        grad.addColorStop(0, 'rgba(255,255,255,0.9)');
+        grad.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2 * dpr;
+        ctx.beginPath();
+        ctx.moveTo(c.x, c.y);
+        ctx.lineTo(c.x - c.vx*trail/20, c.y - c.vy*trail/20);
+        ctx.stroke();
+        // head
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, 1.6*dpr, 0, Math.PI*2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        if(c.life > c.maxLife || c.x < -100 || c.y > h+100){ comets.splice(i,1); }
+      }
+    }
+
+    resize();
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>
