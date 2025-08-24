@@ -318,7 +318,7 @@ const panels = {
       if(panel) panel.classList.add('open');
       if(btn) btn.classList.add('active');
       // Smoothly scroll page to keep the panels at the top under the nav
-      document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+      targetPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     tabButtons.forEach(btn => btn.addEventListener('click', () => openPanel(btn.dataset.panel)));
