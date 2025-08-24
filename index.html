@@ -193,15 +193,36 @@
   transform: translateY(-80px); /* slides upward */
   pointer-events: none; /* disables clicks */
 }
-  .panel {
-  transform: translateY(100px);  /* start a bit lower */
+  .panel-wrap {
+  position: relative;
+  max-width: 1100px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* center vertically */
+  min-height: calc(100vh - 68px); /* full screen minus nav */
+}
+
+.panel {
   opacity: 0;
-  transition: all 1s ease;
+  max-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(8,12,30,0.75);
+  backdrop-filter: blur(8px) saturate(120%);
+  box-shadow: var(--shadow);
+  transform: translateY(50px); /* start slightly lower */
+  transition: all 0.8s ease-in-out;
+  pointer-events: none;
 }
 
 .panel.open {
-  transform: translateY(0);   /* lift up to center */
+  max-height: 2000px;
   opacity: 1;
+  transform: translateY(0); /* lift to center */
+  pointer-events: auto;
 }
 
   </style>
@@ -351,8 +372,10 @@ const panels = {
   // Smooth scroll
   if (panel) {
     setTimeout(() => {
-      smoothScrollTo(panel.offsetTop - 50, 1200);
-    }, 500);
+  const panelTop = panel.getBoundingClientRect().top + window.scrollY;
+  const scrollToY = panelTop - (window.innerHeight/2) + (panel.offsetHeight/2);
+  smoothScrollTo(scrollToY, 1000);
+}, 200); // small delay
   }
 }
 
@@ -388,6 +411,7 @@ if (homeBtn) {
     // Close all panels
     Object.values(panels).forEach(p => p.classList.remove('open'));
 
+    // Smooth scroll to top to show hero
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
