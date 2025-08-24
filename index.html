@@ -183,6 +183,16 @@
 .btn i {
   margin-right: 6px;
 }
+
+  .hero {
+  transition: opacity 1s ease, transform 1s ease; /* smooth fade & slide */
+}
+
+.hero.hidden {
+  opacity: 0;
+  transform: translateY(-80px); /* slides upward */
+  pointer-events: none; /* disables clicks */
+}
   </style>
 </head>
 <body>
@@ -322,6 +332,9 @@ const panels = {
   if(panel) panel.classList.add('open');
   if(btn) btn.classList.add('active');
 
+  // Fade + slide hero away
+const hero = document.querySelector('.hero');
+if (hero) hero.classList.add('hidden');
   // Extra smooth scroll after a short delay
   if (panel) {
     setTimeout(() => {
