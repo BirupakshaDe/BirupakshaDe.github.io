@@ -119,13 +119,25 @@
     /* --- SLIDE-DOWN PANELS (sections open from the TOP) --- */
     .panel-wrap { position: relative; max-width: 1100px; margin: 24px auto 0; padding: 0 20px; }
     .panel {
-      display: none; overflow: hidden; border-radius: var(--radius);
-      border: 1px solid var(--border); background: rgba(8,12,30,0.75);
-      backdrop-filter: blur(8px) saturate(120%);
-      box-shadow: var(--shadow);
-      animation: drop .35s ease both;
-    }
-    @keyframes drop { from { transform: translateY(-8px); opacity: 0;} to { transform: translateY(0); opacity: 1;} }
+  display: none;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(8,12,30,0.75);
+  backdrop-filter: blur(8px) saturate(120%);
+  box-shadow: var(--shadow);
+  transform-origin: top center;
+}
+
+.panel.open {
+  display: block;
+  animation: slideDown .4s ease;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
     .panel.open { display: block; }
     .panel .content { padding: 22px 22px 26px; }
     .panel h2 { margin: 0 0 10px; font-size: 22px; }
@@ -190,7 +202,42 @@
   </nav>
 
   <!-- Slide-down panels rendered just under the top nav -->
-  <div class="panel-wrap">
+  
+  <!-- HERO with profile + name, kept separate from sections (which stay at the top) -->
+  <!-- HERO with profile + name, kept separate from sections -->
+<main class="hero">
+  <div class="card">
+    <div class="hero-inner">
+      
+      <!-- Profile picture -->
+      <div class="avatar" aria-hidden="true">
+        <span class="glow-ring"></span>
+        <img src="Airbrush-Image-Enhancer-1755788403098.jpg" alt="Your profile photo" />
+      </div>
+      
+      <!-- Text + Buttons -->
+      <div>
+        <h1>Birupaksha De</h1>
+        <p class="tagline">Aspiring Astrophysicist</p>
+        
+        <!-- Buttons -->
+        <div class="cta">
+          <a class="btn" href="https://github.com/BirupakshaDe" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/birupaksha-de-081759370/" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a class="btn" href="My_CV.pdf" target="_blank" rel="noopener">
+            📄 CV
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</main>
+<div class="panel-wrap">
     <section id="about-panel" class="panel open" aria-labelledby="about" role="tabpanel">
       <div class="content">
         <h2>About</h2>
@@ -240,42 +287,6 @@ circular orbits, and visualized trajectory dynamics in Python.</p>
       </div>
     </section>
   </div>
-
-  <!-- HERO with profile + name, kept separate from sections (which stay at the top) -->
-  <!-- HERO with profile + name, kept separate from sections -->
-<main class="hero">
-  <div class="card">
-    <div class="hero-inner">
-      
-      <!-- Profile picture -->
-      <div class="avatar" aria-hidden="true">
-        <span class="glow-ring"></span>
-        <img src="Airbrush-Image-Enhancer-1755788403098.jpg" alt="Your profile photo" />
-      </div>
-      
-      <!-- Text + Buttons -->
-      <div>
-        <h1>Birupaksha De</h1>
-        <p class="tagline">Aspiring Astrophysicist</p>
-        
-        <!-- Buttons -->
-        <div class="cta">
-          <a class="btn" href="https://github.com/BirupakshaDe" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a class="btn" href="https://www.linkedin.com/in/birupaksha-de-081759370/" target="_blank" rel="noopener">
-            <i class="fab fa-linkedin"></i> LinkedIn
-          </a>
-          <a class="btn" href="My_CV.pdf" target="_blank" rel="noopener">
-            📄 CV
-          </a>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</main>
-
   <footer>
     © <span id="year"></span> Birupaksha De · Built with HTML/CSS/JS · Space background by a custom canvas starfield
   </footer>
@@ -304,7 +315,7 @@ const panels = {
       if(panel) panel.classList.add('open');
       if(btn) btn.classList.add('active');
       // Smoothly scroll page to keep the panels at the top under the nav
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
     }
 
     tabButtons.forEach(btn => btn.addEventListener('click', () => openPanel(btn.dataset.panel)));
