@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root{
       --accent: #79a8ff;
@@ -136,6 +137,34 @@
     /* --- FOOTER --- */
     footer { text-align:center; color: var(--muted); font-size: 13px; padding: 38px 16px; }
     footer a { color: var(--accent-2); text-decoration: none; }
+    /* Button Base */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  margin: 8px;
+  border-radius: 30px;
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Glow + Animate on hover */
+.btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #00ffff;
+  box-shadow: 0 0 12px #00ffff, 0 0 25px #00ffff;
+  transform: translateY(-3px) scale(1.05);
+}
+
+/* Optional: add subtle icon spacing */
+.btn i {
+  margin-right: 6px;
+}
   </style>
 </head>
 <body>
@@ -153,9 +182,9 @@
       </a>
       <div class="tabs" role="tablist" aria-label="Sections">
         <button class="tab-btn active" data-panel="about" role="tab" aria-controls="about-panel" aria-selected="true">About</button>
+        <button class="tab-btn" data-panel="research" role="tab" aria-controls="research-panel" aria-selected="false">Research</button>
         <button class="tab-btn" data-panel="projects" role="tab" aria-controls="projects-panel" aria-selected="false">Projects</button>
         <button class="tab-btn" data-panel="publications" role="tab" aria-controls="publications-panel" aria-selected="false">Publications</button>
-        <button class="tab-btn" data-panel="contact" role="tab" aria-controls="contact-panel" aria-selected="false">Contact</button>
       </div>
     </div>
   </nav>
@@ -213,26 +242,40 @@ circular orbits, and visualized trajectory dynamics in Python.</p>
   </div>
 
   <!-- HERO with profile + name, kept separate from sections (which stay at the top) -->
-  <main class="hero">
-    <div class="card">
-      <div class="hero-inner">
-        <div class="avatar" aria-hidden="true">
-          <span class="glow-ring"></span>
-          <!-- Replace profile.jpg with your actual image path -->
-          <img src="profile.jpg" alt="Your profile photo" />
-        </div>
-        <div>
-          <h1>Birupaksha De</h1>
-          <p class="tagline">Astrophysics · Data · Visualization</p>
-          <div class="cta">
-            <a class="btn" href="#" data-panel-open="projects">See Projects</a>
-            <a class="btn" href="#" data-panel-open="contact">Get in touch</a>
-            <a class="btn" href="https://github.com/BirupakshaDe" target="_blank" rel="noopener">GitHub</a>
-          </div>
+  <!-- HERO with profile + name, kept separate from sections -->
+<main class="hero">
+  <div class="card">
+    <div class="hero-inner">
+      
+      <!-- Profile picture -->
+      <div class="avatar" aria-hidden="true">
+        <span class="glow-ring"></span>
+        <img src="profile.jpg" alt="Your profile photo" />
+      </div>
+      
+      <!-- Text + Buttons -->
+      <div>
+        <h1>Birupaksha De</h1>
+        <p class="tagline">Astrophysics · Data · Visualization</p>
+        
+        <!-- Buttons -->
+        <div class="cta">
+          <a class="btn" href="#projects">🚀 See Projects</a>
+          <a class="btn" href="https://github.com/BirupakshaDe" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a class="btn" href="cv.pdf" target="_blank" rel="noopener">
+            📄 CV
+          </a>
         </div>
       </div>
+      
     </div>
-  </main>
+  </div>
+</main>
 
   <footer>
     © <span id="year"></span> Birupaksha De · Built with HTML/CSS/JS · Space background by a custom canvas starfield
