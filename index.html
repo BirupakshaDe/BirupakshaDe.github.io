@@ -320,10 +320,11 @@ const panels = {
       if(btn) btn.classList.add('active');
       // Smoothly scroll page to keep the panels at the top under the nav
       setTimeout(() => {
-  window.scrollTo({
-    top: targetPanel.offsetTop - 20, // offset for small gap
-    behavior: 'smooth'
-  });
+  const targetPanel = panel;
+window.scrollTo({
+  top: targetPanel.offsetTop - 20,
+  behavior: 'smooth'
+});
 }, 400); // wait for half the expand animation
 
     tabButtons.forEach(btn => btn.addEventListener('click', () => openPanel(btn.dataset.panel)));
