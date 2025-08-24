@@ -319,7 +319,10 @@ const panels = {
       if(btn) btn.classList.add('active');
       // Smoothly scroll page to keep the panels at the top under the nav
       setTimeout(() => {
-  targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  window.scrollTo({
+    top: targetPanel.offsetTop,
+    behavior: 'smooth'
+  });
 }, 50);
     }
 
