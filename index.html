@@ -260,7 +260,6 @@ circular orbits, and visualized trajectory dynamics in Python.</p>
         
         <!-- Buttons -->
         <div class="cta">
-          <a class="btn" href="#projects">🚀 See Projects</a>
           <a class="btn" href="https://github.com/BirupakshaDe" target="_blank" rel="noopener">
             <i class="fab fa-github"></i> GitHub
           </a>
@@ -287,12 +286,12 @@ circular orbits, and visualized trajectory dynamics in Python.</p>
 
     // ===== Tabs -> Panels logic (sections live at the TOP) =====
     const tabButtons = document.querySelectorAll('.tab-btn');
-    const panels = {
-      about: document.getElementById('about-panel'),
-      projects: document.getElementById('projects-panel'),
-      publications: document.getElementById('publications-panel'),
-      contact: document.getElementById('contact-panel'),
-    };
+const panels = {
+  about: document.getElementById('about-panel'),
+  research: document.getElementById('research-panel'),
+  projects: document.getElementById('projects-panel'),
+  publications: document.getElementById('publications-panel'),
+};
 
     function openPanel(key){
       Object.values(panels).forEach(p => p.classList.remove('open'));
