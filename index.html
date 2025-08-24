@@ -220,8 +220,8 @@
         <span>Birupaksha De</span>
       </a>
       <div class="tabs" role="tablist" aria-label="Sections">
-        <button class="tab-btn active" data-panel="home" role="tab" aria-controls="home-panel" aria-selected="false">Home</button>
-        <button class="tab-btn active" data-panel="about" role="tab" aria-controls="about-panel" aria-selected="true">About</button>
+        <button class="tab-btn active" data-panel="home" role="tab" aria-controls="home-panel" aria-selected="true">Home</button>
+        <button class="tab-btn active" data-panel="about" role="tab" aria-controls="about-panel" aria-selected="false">About</button>
         <button class="tab-btn" data-panel="research" role="tab" aria-controls="research-panel" aria-selected="false">Research</button>
         <button class="tab-btn" data-panel="projects" role="tab" aria-controls="projects-panel" aria-selected="false">Projects</button>
         <button class="tab-btn" data-panel="publications" role="tab" aria-controls="publications-panel" aria-selected="false">Publications</button>
@@ -374,16 +374,23 @@ function smoothScrollTo(targetY, duration) {
 }
 
 // Home button — show hero again
-document.querySelector('.home-btn').addEventListener('click', (e) => {
-  e.preventDefault();
-  const hero = document.querySelector('.hero');
-  if (hero) hero.classList.remove('hidden');
+const homeBtn = document.querySelector('.home-btn');
+if (homeBtn) {
+  homeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const hero = document.querySelector('.hero');
+    if (hero) hero.classList.remove('hidden');
 
-  // close panels
-  Object.values(panels).forEach(p => p.classList.remove('open'));
+    // Remove active from all tabs
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    homeBtn.classList.add('active');
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+    // Close all panels
+    Object.values(panels).forEach(p => p.classList.remove('open'));
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 // Attach listeners ONCE (outside)
 tabButtons.forEach(btn =>
