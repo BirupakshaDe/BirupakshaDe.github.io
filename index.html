@@ -322,15 +322,29 @@ const panels = {
   if(panel) panel.classList.add('open');
   if(btn) btn.classList.add('active');
 
-  // Smoothly scroll page
+  // Extra smooth scroll after a short delay
   if (panel) {
     setTimeout(() => {
-      window.scrollTo({
-        top: panel.offsetTop - 20,
-        behavior: 'smooth'
-      });
-    }, 400);
+      smoothScrollTo(panel.offsetTop - 50, 1200); // 1200ms = slower
+    }, 500); // wait for open animation
   }
+}
+
+// 🔽 Smooth scroll helper
+function smoothScrollTo(targetY, duration) {
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  let startTime;
+
+  function step(time) {
+    if (!startTime) startTime = time;
+    const t = Math.min((time - startTime) / duration, 1);
+    const easedT = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    window.scrollTo(0, startY + diff * easedT);
+    if (t < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
 }
 
 // Attach listeners ONCE (outside)
