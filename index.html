@@ -128,11 +128,12 @@
   backdrop-filter: blur(8px) saturate(120%);
   box-shadow: var(--shadow);
   transform-origin: top center;
-  transform: translateY(-20px);
-  transition: all 0.4s ease; /* smooth in/out */
+  transform: translateY(-30px);
+  transition: all 0.8s ease-in-out; /* slower + smoother */
 }
+
 .panel.open {
-  max-height: 1000px; /* big enough to fit content */
+  max-height: 2000px; /* big enough for content */
   opacity: 1;
   transform: translateY(0);
 }
@@ -320,11 +321,10 @@ const panels = {
       // Smoothly scroll page to keep the panels at the top under the nav
       setTimeout(() => {
   window.scrollTo({
-    top: targetPanel.offsetTop,
+    top: targetPanel.offsetTop - 20, // offset for small gap
     behavior: 'smooth'
   });
-}, 50);
-    }
+}, 400); // wait for half the expand animation
 
     tabButtons.forEach(btn => btn.addEventListener('click', () => openPanel(btn.dataset.panel)));
     document.querySelectorAll('[data-panel-open]').forEach(link => link.addEventListener('click', (e) => {
