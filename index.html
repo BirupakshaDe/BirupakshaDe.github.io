@@ -130,11 +130,13 @@
   transform-origin: top center;
   transform: translateY(-30px);
   transition: all 0.8s ease-in-out; /* slower + smoother */
+  pointer-events: none;
 }
 
 .panel.open {
   max-height: 2000px; /* big enough for content */
   opacity: 1;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
@@ -309,29 +311,39 @@ const panels = {
 };
 
     function openPanel(key){
-      Object.values(panels).forEach(p => p.classList.remove('open'));
-      Object.keys(panels).forEach(k => {
-        const btn = document.querySelector(`.tab-btn[data-panel="${k}"]`);
-        if(btn) btn.classList.remove('active');
-      });
-      const panel = panels[key];
-      const btn = document.querySelector(`.tab-btn[data-panel="${key}"]`);
-      if(panel) panel.classList.add('open');
-      if(btn) btn.classList.add('active');
-      // Smoothly scroll page to keep the panels at the top under the nav
-      setTimeout(() => {
-  const targetPanel = panel;
-window.scrollTo({
-  top: targetPanel.offsetTop - 20,
-  behavior: 'smooth'
-});
-}, 400); // wait for half the expand animation
+  Object.values(panels).forEach(p => p.classList.remove('open'));
+  Object.keys(panels).forEach(k => {
+    const btn = document.querySelector(`.tab-btn[data-panel="${k}"]`);
+    if(btn) btn.classList.remove('active');
+  });
 
-    tabButtons.forEach(btn => btn.addEventListener('click', () => openPanel(btn.dataset.panel)));
-    document.querySelectorAll('[data-panel-open]').forEach(link => link.addEventListener('click', (e) => {
-      e.preventDefault();
-      openPanel(link.dataset.panelOpen);
-    }));
+  const panel = panels[key];
+  const btn = document.querySelector(`.tab-btn[data-panel="${key}"]`);
+  if(panel) panel.classList.add('open');
+  if(btn) btn.classList.add('active');
+
+  // Smoothly scroll page
+  if (panel) {
+    setTimeout(() => {
+      window.scrollTo({
+        top: panel.offsetTop - 20,
+        behavior: 'smooth'
+      });
+    }, 400);
+  }
+}
+
+// Attach listeners ONCE (outside)
+tabButtons.forEach(btn =>
+  btn.addEventListener('click', () => openPanel(btn.dataset.panel))
+);
+
+document.querySelectorAll('[data-panel-open]').forEach(link =>
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    openPanel(link.dataset.panelOpen);
+  })
+);
 
     // ===== Canvas Starfield with twinkle + shooting stars =====
     const canvas = document.getElementById('stars');
