@@ -193,6 +193,17 @@
   transform: translateY(-80px); /* slides upward */
   pointer-events: none; /* disables clicks */
 }
+  .panel {
+  transform: translateY(100px);  /* start a bit lower */
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.panel.open {
+  transform: translateY(0);   /* lift up to center */
+  opacity: 1;
+}
+
   </style>
 </head>
 <body>
@@ -209,6 +220,7 @@
         <span>Birupaksha De</span>
       </a>
       <div class="tabs" role="tablist" aria-label="Sections">
+        <li><a href="#" class="tab-btn home-btn">Home</a></li>
         <button class="tab-btn active" data-panel="about" role="tab" aria-controls="about-panel" aria-selected="true">About</button>
         <button class="tab-btn" data-panel="research" role="tab" aria-controls="research-panel" aria-selected="false">Research</button>
         <button class="tab-btn" data-panel="projects" role="tab" aria-controls="projects-panel" aria-selected="false">Projects</button>
@@ -333,17 +345,18 @@ const panels = {
   if(btn) btn.classList.add('active');
 
   // Fade + slide hero away
-const hero = document.querySelector('.hero');
-if (hero) hero.classList.add('hidden');
-  // Extra smooth scroll after a short delay
+  const hero = document.querySelector('.hero');
+  if (hero) hero.classList.add('hidden');
+
+  // Smooth scroll
   if (panel) {
     setTimeout(() => {
-      smoothScrollTo(panel.offsetTop - 50, 1200); // 1200ms = slower
-    }, 500); // wait for open animation
+      smoothScrollTo(panel.offsetTop - 50, 1200);
+    }, 500);
   }
 }
 
-// 🔽 Smooth scroll helper
+// Smooth scroll helper
 function smoothScrollTo(targetY, duration) {
   const startY = window.scrollY;
   const diff = targetY - startY;
@@ -359,6 +372,18 @@ function smoothScrollTo(targetY, duration) {
 
   requestAnimationFrame(step);
 }
+
+// Home button — show hero again
+document.querySelector('.home-btn').addEventListener('click', (e) => {
+  e.preventDefault();
+  const hero = document.querySelector('.hero');
+  if (hero) hero.classList.remove('hidden');
+
+  // close panels
+  Object.values(panels).forEach(p => p.classList.remove('open'));
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 // Attach listeners ONCE (outside)
 tabButtons.forEach(btn =>
